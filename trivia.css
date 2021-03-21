@@ -1,6 +1,6 @@
 *, *::before, *::after {
     box-sizing: border-box;
-    font-family: Impact, 'Arial Narrow Bold';
+    font-family: 'Impact', 'Arial Narrow Bold';
 }
 
 :root {
