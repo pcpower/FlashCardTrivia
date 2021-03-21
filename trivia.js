@@ -28,9 +28,9 @@ class triviaWrapper {
     }
 
 
-    getCategoryList(e) {
-        this.difficulty = e.target.options[e.target.options.selectedIndex].value;
-        console.log(this.difficulty);
+    getCategoryList() {
+    //     this.difficulty = e.target.options[e.target.options.selectedIndex].value;
+    //     console.log(this.difficulty);
 
         let categoryList = new Array();
 
@@ -57,24 +57,20 @@ class triviaWrapper {
             });
 
             categoryList.sort();
-
-
             console.log(categoryList);
           
-        });
-            console.log("two")
-            
+        });        
 
             // Adding Categories to the dropdown list
-const CategoryListSelect = document.getElementById("categoryAdd");
-let opt1 = document.createElement("option");
+        const CategoryListSelect = document.getElementById("categoryAdd");
+        let opt1 = document.createElement("option");
 
-opt1.value = "1";
-opt1.text = "option: Value 1"
+        opt1.value = "1";
+        opt1.text = "option: Value 1"
 
-selectAnswer.add(opt1, null);
+        CategoryListSelect.add(opt1, null);
             
-            return "done";
+        return "done";
     
     }
 
@@ -93,7 +89,9 @@ selectAnswer.add(opt1, null);
 const multipleType = "multiple";
 const oTriviaWrapper = new triviaWrapper(multipleType)
 
-difficultySet.addEventListener('change', function(e) {oTriviaWrapper.getCategoryList(e)});
+// difficultySet.addEventListener('change', function(e) {oTriviaWrapper.getCategoryList(e)});
+
+oTriviaWrapper.getCategoryList();
 
 
 startButton.addEventListener('click', startGame)//
