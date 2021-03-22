@@ -4,12 +4,62 @@ const scoreLabel = document.getElementById("scoreLabel")
 const questionContainerElement = document.getElementById('question-container')
 
 const categoryContainerElement = document.getElementById('categoryContainer')
-const difficultyContainerElement = document.getElementById('difficultyContainer')
+// const difficultyContainerElement = document.getElementById('difficultyContainer')
 
 let shuffledQuestions, currentQuestionsIndex
 
 const questionElement = document.getElementById('question')
 const answerButtonsElement = document.getElementById('answer-buttons')
+const categoryList = [
+    
+    {name: 'Arithmatic'},
+    {name: 'Science'}
+    
+];
+
+const questions = [
+    {
+        category: "Arithmatic",
+        question: 'What is 2 + 2 = ?',
+        answers: [
+            {text: '4', correct: true },
+            {text: '22', correct: false},
+            {text: '7', correct: false},
+            {text: '2', correct: false}
+        ]
+    },
+    {
+        category: "Arithmatic",
+        question: 'What is 2 + 3 = ?',
+        answers: [
+            {text: '22', correct: false},
+            {text: '7', correct: false},
+            {text: '5', correct: true },
+            {text: '2', correct: false}
+        ]
+    },
+
+    {
+        category: "Science",
+        question: 'Oil, natural gas and coal are examples of …',
+        answers: [
+            {text: 'Geothermal resources', correct: false},
+            {text: 'Fossil fuels', correct: true },
+            {text: 'Renewable resources', correct: false},
+            {text: 'Biofuels', correct: false}
+        ]
+    },
+    {
+        category: "Science",
+        question: 'What is How many bones are in the human body?',
+        answers: [
+            {text: '206', correct: true },
+            {text: '210', correct: false},
+            {text: '198', correct: false},
+            {text: '186', correct: false}
+        ]
+    }
+];
 
 
 class trivia {
@@ -20,16 +70,12 @@ class trivia {
     amount = 10;
     category = "";
     currentQuestionIndex = 0;
-    difficulty = "";
+    // difficulty = "";
     myInterval = null;
     score = 0;
     timer = 0;
-    type = "multiple";
     
-    
-
-    constructor(type) {
-        this.type = type;
+    constructor() {
         this.getCategoryList();
         // this.setNextQuestion();
         
@@ -45,16 +91,16 @@ class trivia {
             }
         
 
-            const difficultyInput = document.getElementById("difficultySet");
-            if (difficultyInput.value == "Select One") {
-                alert("Please select a Difficulty!")
-                return;
-            }
+            // const difficultyInput = document.getElementById("difficultySet");
+            // if (difficultyInput.value == "Select One") {
+            //     alert("Please select a Difficulty!")
+            //     return;
+            // }
 
             categoryContainerElement.classList.add('hide');
-            difficultyContainerElement.classList.add('hide');
+            // difficultyContainerElement.classList.add('hide');
             scoreLabel.classList.add('hide');
-            
+
             let time = 600,
             display = document.querySelector('#countdown');
             this.startTimer(time, display, function() {alert('Times up!'); });
@@ -85,7 +131,7 @@ class trivia {
         console.log("7")
     }
 
-    // getQuestions() {
+    // getCategories() {
     // //     this.difficulty = e.target.options[e.target.options.selectedIndex].value;
     // //     console.log(this.difficulty);
 
@@ -116,11 +162,11 @@ class trivia {
     // };
             
     getCategoryList() {
-            categoryList.sort();
-            console.log(categoryList);
+        categoryList.sort();
+        console.log(categoryList);
 
-              // Adding Categories to the dropdown list
-            const CategoryDropDown = document.getElementById("categoryAdd");
+            // Adding Categories to the dropdown list
+        const CategoryDropDown = document.getElementById("categoryAdd");
 
         categoryList.forEach(function(category) {
             
@@ -133,42 +179,23 @@ class trivia {
 
         CategoryDropDown.add(opt1, null);
 
-        
-        })   
+        }); 
 
-        console.log("4");
-
-          
-        return "done";
-          
-         
-
-        
-    
+        return "done";                                             
     };
-
-    
-
-    getTriviaQuestion() {
-        
-        return;
-    };
-
-    getTypeList() {return;}
 
     resetScore() {
         this.score = 0;
     };
 
     resetState() {
-        // otrivia.clearStatusClass(document.body)
         nextButton.classList.add('hide')
         while (answerButtonsElement.firstChild) {
             answerButtonsElement.removeChild
             (answerButtonsElement.firstChild)
             
         }
-        // console.log("4")
+       
     }
 
     selectAnswer(e) {
@@ -202,23 +229,13 @@ class trivia {
     
     };
 
-    // setNextQuestion() {
-    //     resetState() {
-    //     showQuestion(shuffledQuestions[this.currentQuestionIndex])
-    //     console.log("2")
-    
-    // };
-
     setStatusClass(element, correct) {
-        // otrivia.clearStatusClass(element)
-        console.log(element);
         if (correct) {
             element.classList.add('correct')
         } else {
             element.classList.add('wrong')
         }
         
-
     }
 
     showQuestion(question) {
@@ -242,9 +259,7 @@ class trivia {
         shuffledQuestions = questions.sort(() => Math.random() - .5);
         this.currentQuestionIndex = 0;
         questionContainerElement.classList.remove('hide');
-        // categoryContainerElement.classList.remove('hide')
-        // this.setNextQuestion();
-        console.log("1");
+              
     };
 
     startTimer(duration, display, callback) {
@@ -280,56 +295,10 @@ class trivia {
     stopTimer() {
         clearInterval(otrivia.myInterval);
     }
-
-
 };
 
+// Executing Trivia
+const otrivia = new trivia()
 
-
-const categoryList = [
-    
-    {id: 20, name: 'Mythology'},
-    {id: 27, name: 'Animals'},
-    {id: 21, name: 'Sports'}
-
-];
-
-const multipleType = "multiple";
-const otrivia = new trivia(multipleType)
-
-// difficultySet.addEventListener('change', function(e) {otrivia.getCategoryList(e)});
 
 // otrivia.getCategoryList();
-
-
-
-
-// button.onclick = function() {
-//     window.clearInterval();
-//     let time = 600,
-//     display = document.querySelector('#countdown');
-//     startTimer(time, display, function() {alert('Times up!'); });
-
-// };
-
-const questions = [
-    {
-        question: 'What is 2 + 2 = ?',
-        answers: [
-            {text: '4', correct: true },
-            {text: '22', correct: false},
-            {text: '7', correct: false},
-            {text: '2', correct: false}
-        ]
-    },
-    {
-        question: 'What is 2 + 3 = ?',
-        answers: [
-            {text: '5', correct: true },
-            {text: '22', correct: false},
-            {text: '7', correct: false},
-            {text: '2', correct: false}
-        ]
-    }
-];
-
