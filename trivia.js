@@ -64,7 +64,7 @@ const questions = [
 
 class trivia {
     //Private Properties
-    #BASE_URL = 'https://opentdb.com/api.php?amount=50';
+    // #BASE_URL = 'https://opentdb.com/api.php?amount=50';
 
     // Public Properties
     amount = 10;
@@ -76,7 +76,7 @@ class trivia {
     timer = 0;
     
     constructor() {
-        this.getCategoryList();
+        this.loadCategoryList();
         // this.setNextQuestion();
         
 
@@ -128,7 +128,6 @@ class trivia {
     clearStatusClass(element) {
         element.classList.remove('correct')
         element.classList.remove('wrong')
-        console.log("7")
     }
 
     // getCategories() {
@@ -161,7 +160,7 @@ class trivia {
     //     });
     // };
             
-    getCategoryList() {
+    loadCategoryList() {
         categoryList.sort();
         console.log(categoryList);
 
@@ -225,7 +224,7 @@ class trivia {
             startButton.innerText = 'Restart'
             startButton.classList.remove('hide')
         }
-        console.log("5")
+       
     
     };
 
@@ -301,4 +300,4 @@ class trivia {
 const otrivia = new trivia()
 
 
-// otrivia.getCategoryList();
+// otrivia.getCategories();
