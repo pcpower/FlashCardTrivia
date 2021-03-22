@@ -15,13 +15,16 @@ class trivia {
     #BASE_URL = 'https://opentdb.com/api.php?amount=50';
 
     // Public Properties
-    currentQuestionIndex = 0;
     amount = 10;
     category = "";
+    currentQuestionIndex = 0;
     difficulty = "";
-    type = "multiple";
+    myInterval = null;
     score = 0;
-    questionCount = 0;
+    timer = 0;
+    type = "multiple";
+    
+    
 
     constructor(type) {
         this.type = type;
@@ -169,6 +172,7 @@ class trivia {
         if (shuffledQuestions.length > otrivia.currentQuestionIndex + 1) {
             nextButton.classList.remove('hide')
         } else {
+            otrivia.stopTimer();
             startButton.innerText = 'Restart'
             startButton.classList.remove('hide')
         }
@@ -207,7 +211,7 @@ class trivia {
             button.addEventListener('click', this.selectAnswer);
             answerButtonsElement.appendChild(button);
         })
-        questionCount++;
+        
     };
 
     startGame() {
@@ -222,20 +226,24 @@ class trivia {
     };
 
     startTimer(duration, display, callback) {
+
+        console.log("startTimer - start");
+
+        let minutes, seconds;
+
+            otrivia.timer = duration,
+            minutes, seconds;
     
-        let timer = duration,
-        minutes, seconds;
-    
-        let myInterval = setInterval(function() {
-            minutes = parseInt(timer / 60, 10)
-            seconds = parseInt(timer % 60, 10);
+            this.myInterval = setInterval(function() {
+            minutes = parseInt(otrivia.timer / 60, 10)
+            seconds = parseInt(otrivia.timer % 60, 10);
     
             minutes = minutes < 10 ? "0" + minutes : minutes;
             seconds = seconds < 10 ? "0" + seconds : seconds;
     
             display.textContent = minutes + ":" + seconds;
     
-            if (--timer < 0) {
+            if (--otrivia.timer < 0) {
                 clearInterval(myInterval);
     
                 if(callback) {
@@ -243,11 +251,17 @@ class trivia {
                 }
             }
         }, 1000);
+        console.log("startTimer - End");
     };
 
     
+    stopTimer() {
+        clearInterval(otrivia.myInterval);
+    }
 
 };
+
+
 
 const categoryList = [
     
