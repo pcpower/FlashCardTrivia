@@ -1,5 +1,6 @@
 const startButton = document.getElementById('start-btn')
 const nextButton = document.getElementById('next-btn')
+const scoreLabel = document.getElementById("scoreLabel")
 const questionContainerElement = document.getElementById('question-container')
 
 const categoryContainerElement = document.getElementById('categoryContainer')
@@ -52,6 +53,7 @@ class trivia {
 
             categoryContainerElement.classList.add('hide');
             difficultyContainerElement.classList.add('hide');
+            scoreLabel.classList.add('hide');
             
             let time = 600,
             display = document.querySelector('#countdown');
@@ -83,35 +85,35 @@ class trivia {
         console.log("7")
     }
 
-    getQuestions() {
-    //     this.difficulty = e.target.options[e.target.options.selectedIndex].value;
-    //     console.log(this.difficulty);
+    // getQuestions() {
+    // //     this.difficulty = e.target.options[e.target.options.selectedIndex].value;
+    // //     console.log(this.difficulty);
 
-        // let categoryList = new Array();
+    //     // let categoryList = new Array();
 
 
-        fetch(this.#BASE_URL)
-        .then(function(data) {
-          return data.json();
-        })
-        .then(function(responseJson) {
-            const jsonPackage = responseJson;
+    //     fetch(this.#BASE_URL)
+    //     .then(function(data) {
+    //       return data.json();
+    //     })
+    //     .then(function(responseJson) {
+    //         const jsonPackage = responseJson;
 
-            console.log(jsonPackage.results);
+    //         console.log(jsonPackage.results);
             
-            // const questionList = jsonPackage.results;
+    //         // const questionList = jsonPackage.results;
             
         
-            // // questionList.forEach(function(question) {
-            // //     console.log(question.category);
-            // //     if (!categoryList.includes(question.category)) {
-            // //         categoryList.push(question.category)
+    //         // // questionList.forEach(function(question) {
+    //         // //     console.log(question.category);
+    //         // //     if (!categoryList.includes(question.category)) {
+    //         // //         categoryList.push(question.category)
                     
-            // //     }
+    //         // //     }
 
-            // });
-        });
-    };
+    //         // });
+    //     });
+    // };
             
     getCategoryList() {
             categoryList.sort();
@@ -166,7 +168,7 @@ class trivia {
             (answerButtonsElement.firstChild)
             
         }
-        console.log("4")
+        // console.log("4")
     }
 
     selectAnswer(e) {
@@ -187,12 +189,12 @@ class trivia {
             document.body.classList.add('wrong')
         }
 
-        console.log(`the Score is ${otrivia.score}`);
-
         if (shuffledQuestions.length > otrivia.currentQuestionIndex + 1) {
             nextButton.classList.remove('hide')
         } else {
             otrivia.stopTimer();
+            scoreLabel.classList.remove('hide');
+            scoreLabel.innerText = `Your score is ${otrivia.score}`;
             startButton.innerText = 'Restart'
             startButton.classList.remove('hide')
         }
@@ -278,6 +280,7 @@ class trivia {
     stopTimer() {
         clearInterval(otrivia.myInterval);
     }
+
 
 };
 
