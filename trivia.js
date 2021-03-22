@@ -74,6 +74,7 @@ class trivia {
     myInterval = null;
     score = 0;
     timer = 0;
+    myShuffledQuestions = [];
     
     constructor() {
         this.loadCategoryList();
@@ -84,12 +85,14 @@ class trivia {
             this.resetScore();
 
             const categoryInput = document.getElementById("categoryAdd");
-            // console.log(categoryInput.value);
-            if (categoryInput.value == "Select One") {
+            const categoryValue = categoryInput.value;
+            if (categoryValue == "Select One") {
                 alert("Please select a Category")
                 return;
             }
-        
+
+            let myQuestions = this.getQuestionsByCategory(categoryValue)
+            console.log(myQuestions)
 
             // const difficultyInput = document.getElementById("difficultySet");
             // if (difficultyInput.value == "Select One") {
@@ -107,12 +110,12 @@ class trivia {
             
             
             this.startGame(); 
-            this.clearStatusClass(document.body)
+            this.clearStatusClass(document.body);
             this.resetState(); 
-            // if (this.questionCount < questions.length) {
-               this.showQuestion(shuffledQuestions[this.currentQuestionIndex])
-                
-            // }
+            this.myShuffledQuestions = this.shuffle(myQuestions);
+            console.log(this.myShuffledQuestions);
+
+            this.showQuestion(this.myShuffledQuestions[this.currentQuestionIndex]);
             console.log(questions.length);
            
         })
@@ -120,7 +123,7 @@ class trivia {
         nextButton.addEventListener('click', () => {
             this.currentQuestionIndex++
             this.resetState(); 
-            this.showQuestion(shuffledQuestions[this.currentQuestionIndex])
+            this.showQuestion(this.myShuffledQuestions[this.currentQuestionIndex]);
             this.clearStatusClass(document.body);
         })
     }
@@ -159,6 +162,20 @@ class trivia {
     //         // });
     //     });
     // };
+
+    getQuestionsByCategory(category) {
+        console.log(category)
+        let myQuestions = [];
+        questions.forEach(function(question) {
+            if (question.category == category) { 
+                console.log(`Category = ${question.category}`)
+                myQuestions.push(question);
+            }
+        } )
+        
+        console.log(myQuestions);
+        return myQuestions;
+    };
             
     loadCategoryList() {
         categoryList.sort();
@@ -169,14 +186,13 @@ class trivia {
 
         categoryList.forEach(function(category) {
             
-        let opt1 = document.createElement("option");
-        console.log(category);
-        console.log("1");
+            let opt1 = document.createElement("option");
+            console.log(category);
+            console.log("1");   
 
-        opt1.value = category.id;
-        opt1.text = category.name;
+            opt1.text = category.name;
 
-        CategoryDropDown.add(opt1, null);
+            CategoryDropDown.add(opt1, null);
 
         }); 
 
@@ -215,7 +231,7 @@ class trivia {
             document.body.classList.add('wrong')
         }
 
-        if (shuffledQuestions.length > otrivia.currentQuestionIndex + 1) {
+        if (otrivia.myShuffledQuestions.length > otrivia.currentQuestionIndex + 1) {
             nextButton.classList.remove('hide')
         } else {
             otrivia.stopTimer();
@@ -252,10 +268,14 @@ class trivia {
         
     };
 
+    shuffle(myQuestions){
+        return myQuestions.sort(() => Math.random() - .5);
+    }
+
     startGame() {
         console.log('Started');
         startButton.classList.add('hide');
-        shuffledQuestions = questions.sort(() => Math.random() - .5);
+        //shuffledQuestions = questions.sort(() => Math.random() - .5);
         this.currentQuestionIndex = 0;
         questionContainerElement.classList.remove('hide');
               
