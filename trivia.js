@@ -2,7 +2,8 @@ const startButton = document.getElementById('start-btn')
 const nextButton = document.getElementById('next-btn')
 const questionContainerElement = document.getElementById('question-container')
 
-const categoryListElement = document.getElementById('categoryList')
+const categoryContainerElement = document.getElementById('categoryContainer')
+const difficultyContainerElement = document.getElementById('difficultyContainer')
 
 let shuffledQuestions, currentQuestionsIndex
 
@@ -30,9 +31,28 @@ class trivia {
         this.type = type;
         this.getCategoryList();
         // this.setNextQuestion();
+        
+
         startButton.addEventListener('click', () => {
             this.resetScore();
-                
+
+            const categoryInput = document.getElementById("categoryAdd");
+            // console.log(categoryInput.value);
+            if (categoryInput.value == "Select One") {
+                alert("Please select a Category")
+                return;
+            }
+        
+
+            const difficultyInput = document.getElementById("difficultySet");
+            if (difficultyInput.value == "Select One") {
+                alert("Please select a Difficulty!")
+                return;
+            }
+
+            categoryContainerElement.classList.add('hide');
+            difficultyContainerElement.classList.add('hide');
+            
             let time = 600,
             display = document.querySelector('#countdown');
             this.startTimer(time, display, function() {alert('Times up!'); });
@@ -220,7 +240,7 @@ class trivia {
         shuffledQuestions = questions.sort(() => Math.random() - .5);
         this.currentQuestionIndex = 0;
         questionContainerElement.classList.remove('hide');
-        // categoryListElement.classList.remove('hide')
+        // categoryContainerElement.classList.remove('hide')
         // this.setNextQuestion();
         console.log("1");
     };
