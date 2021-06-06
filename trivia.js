@@ -1,12 +1,11 @@
+(function() {
+
 const startButton = document.getElementById('start-btn')
 const nextButton = document.getElementById('next-btn')
 const scoreLabel = document.getElementById("scoreLabel")
 const questionContainerElement = document.getElementById('question-container')
-
 const categoryContainerElement = document.getElementById('categoryContainer')
 // const difficultyContainerElement = document.getElementById('difficultyContainer')
-
-let shuffledQuestions, currentQuestionsIndex
 
 const questionElement = document.getElementById('question')
 const answerButtonsElement = document.getElementById('answer-buttons')
@@ -51,7 +50,7 @@ const questions = [
     },
     {
         category: "Science",
-        question: 'What is How many bones are in the human body?',
+        question: 'How many bones are in the human body?',
         answers: [
             {text: '206', correct: true },
             {text: '210', correct: false},
@@ -321,3 +320,5 @@ const otrivia = new trivia()
 
 
 // otrivia.getCategories();
+
+})();
