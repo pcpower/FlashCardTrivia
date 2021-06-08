@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/flashcardtrivia/static/css/main.4a5404e1.chunk.css",
+    "main.js": "/flashcardtrivia/static/js/main.947c0573.chunk.js",
+    "main.js.map": "/flashcardtrivia/static/js/main.947c0573.chunk.js.map",
+    "runtime-main.js": "/flashcardtrivia/static/js/runtime-main.6a26d9ee.js",
+    "runtime-main.js.map": "/flashcardtrivia/static/js/runtime-main.6a26d9ee.js.map",
+    "static/js/2.6ed2dbb1.chunk.js": "/flashcardtrivia/static/js/2.6ed2dbb1.chunk.js",
+    "static/js/2.6ed2dbb1.chunk.js.map": "/flashcardtrivia/static/js/2.6ed2dbb1.chunk.js.map",
+    "index.html": "/flashcardtrivia/index.html",
+    "static/css/main.4a5404e1.chunk.css.map": "/flashcardtrivia/static/css/main.4a5404e1.chunk.css.map",
+    "static/js/2.6ed2dbb1.chunk.js.LICENSE.txt": "/flashcardtrivia/static/js/2.6ed2dbb1.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.6a26d9ee.js",
+    "static/js/2.6ed2dbb1.chunk.js",
+    "static/css/main.4a5404e1.chunk.css",
+    "static/js/main.947c0573.chunk.js"
+  ]
+}
